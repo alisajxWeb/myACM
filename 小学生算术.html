@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            事件： input  监听input框的变化
+                  onclick 监听点击事件，读取框的值
+        -->
+        <script>
+            function getF(tmp){
+                let res=[],
+                 r = 0;
+                 if(tmp.sec%2!=0 || tmp.sec/2<tmp.fir){
+                     return 'No answer;'
+                 }
+                 r = tmp.sec/2 - tmp.fir;
+                 res.push(tmp.fir-r,r,';')
+                 return res
+            }
+            function cal(putIn) {
+                let putOut = [];
+                let n = putIn[0];
+                if (n < 0 || n > 10) {
+                    return '请修改参数';
+                }
+                for (let i = 1; i < n*2; i+=2) {
+                    let tmp1 = {};
+                    tmp1.fir = putIn[i];
+                    tmp1.sec = putIn[i+1];
+                    let tmp2 = getF(tmp1);
+                    putOut.push(tmp2);
+                }
+                let out= putOut.toString().replace(/,/g,' ');
+                out = out.toString().replace(/;/g, '<br>');
+                return out;
+            }
+            let calculate = function() {
+                const ipt = document.getElementsByClassName("ipt")[0];
+                const res = document.getElementsByClassName("res")[0];
+                let value = ipt.value.split(',')
+                let result = cal(value) || '请输入正确参数'
+                res.innerHTML = result
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            描述<br>
+            很多小学生在学习加法时，发现“进位”特别容易出错。你的任务是计算两个三位数在相加时需要多少次进位。你编制的程序应当可以连续处理多组数据，直到读到两个0（这是输入结束标记）。<br>
+            输入<br>
+            输入两个正整数m,n.(m,n,都是三位数)<br>
+            输出<br>
+            输出m,n,相加时需要进位多少次。<br>
+        </div>
+        <input class="ipt" type="text" /> 
+        <input id="btn" type="button" onclick="calculate()" value="确定"/>
+        <div class="res"></div>
+        
+        <script>
+            </script>
+    </body>
+
+</html>

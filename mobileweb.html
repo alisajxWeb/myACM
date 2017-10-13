@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .touch {
+                width: 10em;
+                height:10em;
+                background: red;
+            }
+        </style>
+        <script>
+            let t = document.getElementsByClassName("touch")[0];
+            document.addEventListener("touchstart", function(){
+                alert('touch')
+            },false)
+        </script>
+    </head>
+    <body>
+        <div class="touch">
+
+        </div>
+    </body>
+</html>
