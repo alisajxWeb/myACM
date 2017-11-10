@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            事件： input  监听input框的变化
+                  onclick 监听点击事件，读取框的值
+        -->
+        <script>
+            function getF(tmp){
+                let res=[],
+                 r = 0;
+                 if(tmp.sec%2!=0 || tmp.sec/2<tmp.fir){
+                     return 'No answer;'
+                 }
+                 r = tmp.sec/2 - tmp.fir;
+                 res.push(tmp.fir-r,r,';')
+                 return res
+            }
+            function cal(putIn) {
+                let putOut = [];
+                let n = putIn[0];
+                if (n < 0 || n > 10) {
+                    return '请修改参数';
+                }
+                for (let i = 1; i < n*2; i+=2) {
+                    let tmp1 = {};
+                    tmp1.fir = putIn[i];
+                    tmp1.sec = putIn[i+1];
+                    let tmp2 = getF(tmp1);
+                    putOut.push(tmp2);
+                }
+                let out= putOut.toString().replace(/,/g,' ');
+                out = out.toString().replace(/;/g, '<br>');
+                return out;
+            }
+            let calculate = function() {
+                const ipt = document.getElementsByClassName("ipt")[0];
+                const res = document.getElementsByClassName("res")[0];
+                let value = ipt.value.split(',')
+                let result = cal(value) || '请输入正确参数'
+                res.innerHTML = result
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            描述<br>
+            已知鸡和兔的总数量为n,总腿数为m。输入n和m,依次输出鸡和兔的数目，如果无解，则输出“No answer”(不要引号)。<br>
+            输入<br>
+            第一行输入一个数据a,代表接下来共有几组数据，在接下来的(a<10)<br>
+            a行里，每行都有一个n和m.(0<m,n<100)<br>
+            输出<br>
+            输出鸡兔的个数，或者No answer<br>
+            样例输入<br>
+            2,14,32,10,16<br>
+            样例输出<br>
+            12 2<br>
+            No answer<br>
+        </div>
+        <input class="ipt" type="text" /> 
+        <input id="btn" type="button" onclick="calculate()" value="确定"/>
+        <div class="res"></div>
+        
+        <script>
+            </script>
+    </body>
+
+</html>

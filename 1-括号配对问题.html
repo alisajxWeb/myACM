@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--
+            事件： input  监听input框的变化
+                  onclick 监听点击事件，读取框的值
+        -->
+    <script>
+        function cal(putIn) {
+            let putOut = [];
+            function getF(x, y) {
+                let count = 0,
+                    w = 0;
+                for (i = 2; i >= 0; i--) {
+                    if (Number(x[i]) + Number(y[i]) + w >= 10){
+                        count++;
+                        w = 1;//这里如果是多位数需要动态更改
+                    }
+                }
+                putOut.push(count)
+            }
+            for (let i = 0; i < putIn.length; i += 2) {
+                if (putIn[i] < 100 || putIn[i] > 999 || putIn[i + 1] < 100 || putIn[i + 1] > 999) {
+                    return
+                }
+                getF(putIn[i], putIn[i + 1])
+            }
+            let out = putOut.toString().replace(/,/g, ' ');
+            out = out.toString().replace(/;/g, '<br>');
+            return out;
+        }
+        let calculate = function () {
+            const ipt = document.getElementsByClassName("ipt")[0];
+            const res = document.getElementsByClassName("res")[0];
+            let value = ipt.value.split(' ')
+            let result = cal(value) || '请输入正确参数'
+            res.innerHTML = result
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        描述<br>
+        现在，有一行括号序列，请你检查这行括号是否配对。<br>
+        输入<br>
+        第一行输入一个数N,表示有N组测试数据。<br>
+        后面的N行输入多组输入数据，每组输入数据都是一个字符串S(S的长度小于10000，且S不是空串），<br>
+        测试数据组数少于5组。数据保证S中只含有"[", "]", "(", ")" 四种字符<br>
+        输出<br>
+        每组输入数据的输出占一行，如果该字符串中所含的括号是配对的，<br>
+        则输出Yes,如果不配对则输出No<br><br>
+        样例输入<br>
+        3<br>
+        [(])<br>
+        (])<br>
+        ([[]()])<br>
+        样例输出<br>
+        No<br>
+        No<br>
+        Yes<br>
+    </div>
+    <input class="ipt" type="text" />
+    <input id="btn" type="button" onclick="calculate()" value="确定" />
+    <div class="res"></div>
+</body>
+
+</html>

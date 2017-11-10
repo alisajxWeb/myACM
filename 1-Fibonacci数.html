@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            事件： input  监听input框的变化
+                  onclick 监听点击事件，读取框的值
+        -->
+        <script>
+            //与绿字替换注释，更换事件
+            let calculate = function(){
+                const ipt = document.getElementsByClassName("ipt")[0];
+                const res = document.getElementsByClassName("res")[0];
+                const btn = document.getElementById('btn')[0];
+                let value = ipt.value.split(',')
+                let result = getFibN(value) || ''
+                res.innerHTML = result
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            描述<br>
+            无穷数列1，1，2，3，5，8，13，21，34，55...称为Fibonacci数列，它可以递归地定义为<br>
+            F(n)=1 ...........(n=1或n=2)<br>
+            F(n)=F(n-1)+F(n-2).....(n>2)<br>
+            现要你来求第n个斐波纳奇数。（第1个、第二个都为1)<br>
+            输入<br>
+            第一行是一个整数m(m<5)表示共有m组测试数据<br>
+            每次测试数据只有一行，且只有一个整形数n(n<20)<br>
+            输出<br>
+            对每组输入n，输出第n个Fibonacci数<br>
+            样例输入<br>
+            3,1,3,5<br>
+            样例输出<br>
+            1,2,5<br>
+        </div>
+        <input class="ipt" type="text" /> <input id="btn" type="button" onclick="calculate(this)" value="确定"/>
+        <div class="res"></div>
+        
+        <script>
+            (function(){
+                // const ipt = document.getElementsByClassName("ipt")[0];
+                // const res = document.getElementsByClassName("res")[0];
+                // const btn = document.getElementById('btn')[0];
+                // ipt.addEventListener('input',function(e){
+                //     let value = e.currentTarget.value.split(',')
+                //     let result = getFibN(value) || ''
+                //     res.innerHTML = result
+                // },false)
+            })()
+            function getF(n) {
+                let F = [1, 1]
+                for (let i = 2; i < n; i++) {
+                    F.push(F[i - 1] + F[i - 2])
+                }
+                    return F[n-1]
+            }
+            function getFibN(putIn) {
+                let putOut = []
+                let n = putIn[0]
+                if (n > 20) {
+                    putOut.push('请修改参数')
+                    return putOut
+                }
+                for (let i = 1; i <= n; i++) {
+                    let tmp = putIn[i]
+                    if(putIn[i]==1||putIn[i]==2){
+                        putOut.push(1)
+                    } else {
+                        let tmp2 = getF(putIn[i])
+                        putOut.push(tmp2)
+                    }
+                }
+                return putOut
+            }
+            </script>
+    </body>
+
+</html>

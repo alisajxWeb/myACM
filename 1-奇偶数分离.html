@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            事件： input  监听input框的变化
+                  onclick 监听点击事件，读取框的值
+        -->
+        <script>
+            let calculate = function() {
+                const ipt = document.getElementsByClassName("ipt")[0];
+                const res = document.getElementsByClassName("res")[0];
+                let value = ipt.value.split(',')
+                let result = separation(value) || '请输入正确参数'
+                res.innerHTML = result
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            描述<br>
+            有一个整型偶数n(2<= n <=10000),你要做的是：先把1到n中的所有奇数从小到大输出，再把所有的偶数从小到大输出。<br>
+            输入<br>
+            第一行有一个整数i（2<=i<30)表示有 i 组测试数据；<br>
+            每组有一个整型偶数n。<br>
+            输出<br>
+            第一行输出所有的奇数<br>
+            第二行输出所有的偶数<br>
+            样例输入<br>
+            2,10,14<br>
+            样例输出<br>
+            1 3 5 7 9 <br>
+            2 4 6 8 10 <br>
+            <br>
+            1 3 5 7 9 11 13 <br>
+            2 4 6 8 10 12 14 <br>
+        </div>
+        <input class="ipt" type="text" /> 
+        <input id="btn" type="button" onclick="calculate(this)" value="确定"/>
+        <div class="res"></div>
+        
+        <script>
+            function getF(n){
+                let even = [];
+                let odd= [];
+                for(let i = 1; i<=n; i++){
+                    if(i%2==0){
+                        even.push(i)
+                    } else {
+                        odd.push(i)
+                    }
+                }
+                return odd.concat(';',even,';')
+            }
+            function separation(putIn) {
+                let putOut = []
+                let n = putIn[0]
+                if (n<2 || n > 30) {
+                    return '请修改参数'
+                }
+                for (let i = 1; i <= n; i++) {
+                    let tmp1 = putIn[i]
+                    let tmp2 = getF(tmp1)
+                    putOut.push(tmp2)
+                }
+                let out= putOut.toString().replace(/,/g,' ')
+                out = out.toString().replace(/;/g, '<br>')
+                return out
+            }
+            </script>
+    </body>
+
+</html>

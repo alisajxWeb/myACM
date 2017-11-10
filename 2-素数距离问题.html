@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            事件： input  监听input框的变化
+                  onclick 监听点击事件，读取框的值
+        -->
+        <script>
+            let calculate = function() {
+                const ipt = document.getElementsByClassName("ipt")[0];
+                const res = document.getElementsByClassName("res")[0];
+                let value = ipt.value.split(',')
+                let result = prime(value) || '请输入正确参数'
+                res.innerHTML = result
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            描述<br>
+            现在给出你一些数，要求你写出一个程序，输出这些整数相邻最近的素数，并输出其相距长度。<br>
+            如果左右有等距离长度素数，则输出左侧的值及相应距离。<br>
+            如果输入的整数本身就是素数，则输出该素数本身，距离输出0<br>
+            输入<br>
+            第一行给出测试数据组数N(0小于N小于等于10000) <br>
+            接下来的N行每行有一个整数M(0小于M小于1000000)，<br>
+            输出<br>
+            每行输出两个整数 A B.<br>
+            其中A表示离相应测试数据最近的素数，B表示其间的距离。<br>
+            样例输入<br>
+            3,6,8,10<br>
+            样例输出<br>
+            5,1;7,1;11,1<br>
+        </div>
+        <input class="ipt" type="text" /> 
+        <input id="btn" type="button" onclick="calculate(this)" value="确定"/>
+        <div class="res"></div>
+        
+        <script>
+            function getF(n){
+                let even = [];
+                let odd= [];
+                for(let i = 1; i<=n; i++){
+                    if(i%2==0){
+                        even.push(i)
+                    } else {
+                        odd.push(i)
+                    }
+                }
+                return odd.concat(';',even,';')
+            }
+            function prime (putIn) {
+                let putOut = []
+                for (let i = 0; i < n; i++) {
+                    let goOnLeft = true;
+                    let goOnRight = true;
+                    while(goOnLeft){
+                        putIn[i]
+                    }
+                }
+                let out= putOut.toString().replace(/,/g,' ')
+                out = out.toString().replace(/;/g, '<br>')
+                return out
+            }
+            </script>
+    </body>
+
+</html>
